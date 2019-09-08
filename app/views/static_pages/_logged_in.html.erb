@@ -7,7 +7,8 @@
       <%= render 'shared/stats' %>
     </section>
     <section class="micropost_form">
-      <%= render 'shared/micropost_form' %>
+      <%= link_to "Create post", new_micropost_path, class: "btn btn-lg btn-primary" %>
+      <%#= render 'shared/micropost_form' %>
     </section>
   </aside>
   <div class="col-md-8">

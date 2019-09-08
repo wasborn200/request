@@ -4,7 +4,7 @@ class MicropostTest < ActiveSupport::TestCase
 
   def setup
     @user = users(:michael)
-    @micropost = @user.microposts.build(content: "Lorem ipsum")
+    @micropost = @user.microposts.build(title: "first song", content: "Lorem ipsum")
   end
 
   test "should be valid" do
@@ -16,8 +16,18 @@ class MicropostTest < ActiveSupport::TestCase
     assert_not @micropost.valid?
   end
 
+  test "title should be present" do
+    @micropost.title = "  "
+    assert_not @micropost.valid?
+  end
+
   test "content should be present" do
     @micropost.content = "  "
+    assert_not @micropost.valid?
+  end
+
+  test "title should be at most 30 characters" do
+    @micropost.title = "a" * 31
     assert_not @micropost.valid?
   end
 

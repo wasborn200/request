@@ -15,7 +15,8 @@
     <% end %>
   </span>
   <% if current_user?(@micropost.user) %>
+    <%= link_to "edit", edit_micropost_path, class: "btn btn-lg btn-primary" %>
     <%= link_to "delete", @micropost, method: :delete,
-                                    data: { confirm: "You sure?"} %>
+        data: { confirm: "You sure?"}, class: "btn btn-lg btn-danger" %>
   <% end %>
 </li>

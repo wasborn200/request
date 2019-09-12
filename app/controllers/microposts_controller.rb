@@ -20,7 +20,9 @@ class MicropostsController < ApplicationController
   def destroy
     @micropost.destroy
     flash[:success] = "Micropost deleted"
-    redirect_back(fallback_location: root_url)
+    redirect_to root_url
+    # showページで削除をする場合、以下のコードが利用できない
+    # redirect_back(fallback_location: root_url)
   end
 
   # create_new_pages
@@ -46,15 +48,19 @@ class MicropostsController < ApplicationController
     end
   end
 
-  # def update
-  #   @user = User.find(params[:id])
-  #   if @user.update_attributes(user_params)
-  #     flash[:success] = "Profile updated"
-  #     redirect_to @user
-  #   else
-  #     render 'edit'
-  #   end
-  # end
+  def index
+    if logged_in?
+      @micropost = Micropost.all
+      if params[:q] && params[:q].reject { |key, value| value.blank? }.present?
+        @q = Micropost.ransack(microposts_search_params)
+        @feed_items = @q.result.paginate(page: params[:page])
+      else
+        @q = Micropost.none.ransack
+        @feed_items = Micropost.paginate(page: params[:page])
+      end
+      @url = root_path
+    end
+  end
 
 
   private

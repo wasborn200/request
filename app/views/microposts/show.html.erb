@@ -1,22 +1,32 @@
-<li id="@micropost-<%= @micropost.id %>">
-  <%= link_to gravatar_for(@micropost.user, size: 50), @micropost.user %>
-  <span class="user"><%= link_to @micropost.user.name, @micropost.user %></span>
-  <span class="content">
-    <%= @micropost.content %>
-    <% if @micropost.picture? %>
-      <% if @micropost.picture.file.content_type.include?('image/') %>
-          <%= image_tag @micropost.picture.url(:thumb) %>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="row">
+      <%= link_to gravatar_for(@micropost.user, size: 50), @micropost.user %>
+      <span class="user"><%= link_to @micropost.user.name, @micropost.user %></span>
+    </div>
+    <div class="row">
+      <span class="content">
+        <%= @micropost.content %>
+        <% if @micropost.picture? %>
+        <% if @micropost.picture.file.content_type.include?('image/') %>
+        <%= image_tag @micropost.picture.url(:thumb) %>
         <% elsif @micropost.picture.file.content_type.include?('audio/') %>
-          <%= audio_tag @micropost.picture.url, controls: true if @micropost.picture? %>
+        <%= audio_tag @micropost.picture.url, controls: true if @micropost.picture? %>
         <% else %>
-          <%= video_tag @micropost.picture.url, width: "30%", height: "30%",
-                                          controls: true, autobuffer: true %>
+        <%= video_tag @micropost.picture.url, width: "30%", height: "30%",
+        controls: true, autobuffer: true %>
+        <% end %>
+        <% end %>
+      </span>
+    </div>
+    <div class="row">
+      <% if current_user?(@micropost.user) %>
+      <%= link_to "edit", edit_micropost_path, class: "btn btn-lg btn-primary" %>
+      <%= link_to "delete", @micropost, method: :delete,
+      data: { confirm: "You sure?"}, class: "btn btn-lg btn-danger" %>
       <% end %>
-    <% end %>
-  </span>
-  <% if current_user?(@micropost.user) %>
-    <%= link_to "edit", edit_micropost_path, class: "btn btn-lg btn-primary" %>
-    <%= link_to "delete", @micropost, method: :delete,
-        data: { confirm: "You sure?"}, class: "btn btn-lg btn-danger" %>
-  <% end %>
-</li>
+    </div>
+  </div>
+
+</div>

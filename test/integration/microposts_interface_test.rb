@@ -29,6 +29,7 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     assert_template 'microposts/show'
     assert_match content, response.body
     assert_select 'a', text: 'delete'
+    assert_select 'a', text: 'edit'
     micropost = Micropost.find_by(microposts)
     # トップページに戻ると、今さっき投稿したマイクロポストが最初に来ている
     get root_path
@@ -42,7 +43,10 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
                        { title: title2,
                          content: content2,
                          picture: picture } }
+    follow_redirect!
+    assert_template 'microposts/show'
     # 投稿を削除する
+    get root_path
     assert_difference 'Micropost.count', -1 do
       delete micropost_path(micropost)
     end

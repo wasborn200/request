@@ -42,7 +42,7 @@ class MicropostsController < ApplicationController
     @micropost = Micropost.find(params[:id])
     if @micropost.update_attributes(micropost_params)
       flash[:success] = "Micropost updated"
-      redirect_to root_url
+      redirect_to micropost_path(@micropost)
     else
       render 'edit'
     end

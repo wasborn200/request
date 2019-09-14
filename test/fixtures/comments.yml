@@ -1,11 +1,9 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+iolite:
+  content: "Your song is good!"
+  user: michael
+  micropost: ants
 
-one:
-  content: MyString
-  user: one
-  micropost: one
-
-two:
-  content: MyString
-  user: two
-  micropost: two
+idocrase:
+  content: "I want hear your other song!"
+  user: lana
+  micropost: orange

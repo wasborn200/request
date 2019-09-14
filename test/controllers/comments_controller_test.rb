@@ -1,7 +1,11 @@
 require 'test_helper'
 
 class CommentsControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
+
+  def setup
+    @user = users(:michael)
+    @my_comment = comments(:iolite)
+    @other_user_comment = comments(:idocrase)
+  end
+
 end

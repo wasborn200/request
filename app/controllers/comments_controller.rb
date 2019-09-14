@@ -1,16 +1,7 @@
 class CommentsController < ApplicationController
-  # def create
-  #   @micropost = Micropost.find(params[:micropost_id])
-  #   @comment = current_user.comments.new(comment_params)
-  #   if @comment.save!
-  #     redirect_to root_url
-  #   else
-  #     redirect_to root_url
-  #   end
-  # end
 
   def create
-    @micropost=Micropost.find(params[:micropost_id])
+    @micropost = Micropost.find(params[:micropost_id])
     @comment = @micropost.comments.build(comment_params)
     @comment.user = current_user
     if @comment.save
@@ -19,7 +10,6 @@ class CommentsController < ApplicationController
       render "microposts/show"
     end
   end
-
 
   private
     def comment_params

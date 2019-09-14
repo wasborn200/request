@@ -7,13 +7,8 @@ class MicropostsController < ApplicationController
     if @micropost.save
       flash[:success] = "Micropost created!"
       redirect_to micropost_path(@micropost)
-      # redirect_to root_url
     else
       render 'microposts/new'
-      # @q = Micropost.none.ransack
-      # @feed_items = current_user.feed.paginate(page: params[:page])
-      # redirect_back(fallback_location: root_url)
-      # render 'static_pages/home'
     end
   end
 
@@ -21,11 +16,8 @@ class MicropostsController < ApplicationController
     @micropost.destroy
     flash[:success] = "Micropost deleted"
     redirect_to root_url
-    # showページで削除をする場合、以下のコードが利用できない
-    # redirect_back(fallback_location: root_url)
   end
 
-  # create_new_pages
   def new
     @micropost = Micropost.new
   end

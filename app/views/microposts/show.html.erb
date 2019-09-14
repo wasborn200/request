@@ -9,17 +9,35 @@
       <span class="content">
         <%= @micropost.content %>
         <% if @micropost.picture? %>
-        <% if @micropost.picture.file.content_type.include?('image/') %>
-        <%= image_tag @micropost.picture.url(:thumb) %>
-        <% elsif @micropost.picture.file.content_type.include?('audio/') %>
-        <%= audio_tag @micropost.picture.url, controls: true if @micropost.picture? %>
-        <% else %>
-        <%= video_tag @micropost.picture.url, width: "30%", height: "30%",
-        controls: true, autobuffer: true %>
-        <% end %>
+          <% if @micropost.picture.file.content_type.include?('image/') %>
+          <%= image_tag @micropost.picture.url(:thumb) %>
+          <% elsif @micropost.picture.file.content_type.include?('audio/') %>
+          <%= audio_tag @micropost.picture.url, controls: true if @micropost.picture? %>
+          <% else %>
+          <%= video_tag @micropost.picture.url, width: "30%", height: "30%",
+          controls: true, autobuffer: true %>
+          <% end %>
         <% end %>
       </span>
     </div>
+
+    <div class="row">
+      <h2>コメント一覧</h2>
+      <% @comments.each do |c| %>
+        <div>
+          <a href="/users/<%= @micropost.user_id %>"><%= c.user.name %></a>
+          <%= c.content %>
+          <hr>
+        </div>
+      <% end %>
+      <%= form_for [@micropost, @comment] do |f| %>
+        <%= f.text_field :content %>
+        <%= hidden_field_tag :micropost_id, @micropost.id %>
+        <br>
+        <%= f.submit 'コメントする' %>
+      <% end %>
+    </div>
+
     <div class="row">
       <% if current_user?(@micropost.user) %>
       <%= link_to "edit", edit_micropost_path, class: "btn btn-lg btn-primary" %>

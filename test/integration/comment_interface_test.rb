@@ -5,8 +5,6 @@ class CommentInterfaceTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:michael)
     @micropost = microposts(:orange)
-    @my_comment = comments(:iolite)
-    @other_user_comment = comments(:idocrase)
   end
 
   test "comment interface" do

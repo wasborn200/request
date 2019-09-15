@@ -1,0 +1,20 @@
+<div class="row">
+  <%= link_to gravatar_for(@micropost.user, size: 50), @micropost.user %>
+  <span class="user"><%= link_to @micropost.user.name, @micropost.user %></span>
+</div>
+<div class="row col-md-12"><%= @micropost.title %></div>
+<div class="row">
+  <span class="content">
+    <%= @micropost.content %>
+    <% if @micropost.picture? %>
+      <% if @micropost.picture.file.content_type.include?('image/') %>
+      <%= image_tag @micropost.picture.url(:thumb) %>
+      <% elsif @micropost.picture.file.content_type.include?('audio/') %>
+      <%= audio_tag @micropost.picture.url, controls: true if @micropost.picture? %>
+      <% else %>
+      <%= video_tag @micropost.picture.url, width: "30%", height: "30%",
+      controls: true, autobuffer: true %>
+      <% end %>
+    <% end %>
+  </span>
+</div>

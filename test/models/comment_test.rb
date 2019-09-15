@@ -4,7 +4,6 @@ class CommentTest < ActiveSupport::TestCase
 
   def setup
     @user = users(:michael)
-    @micropost = @user.microposts.build(title: "first song", content: "Lorem ipsum")
     @comment = comments(:iolite)
   end
 

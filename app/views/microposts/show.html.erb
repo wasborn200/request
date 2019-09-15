@@ -24,14 +24,17 @@
 
     <div class="row">
       <h2>コメント一覧</h2>
-      <% @comments.each do |c| %>
-        <div>
-          <a href="/users/<%= @micropost.user_id %>"><%= c.user.name %></a>
-          <%= c.content %>
-          <hr>
-        </div>
+      <% if @comments.any? %>
+        <% @comments.each do |c| %>
+          <div>
+            <a href="/users/<%= @micropost.user_id %>"><%= c.user.name %></a>
+            <%= c.content %>
+            <hr>
+          </div>
+        <% end %>
       <% end %>
       <%= form_for [@micropost, @comment] do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
         <%= f.text_field :content %>
         <%= hidden_field_tag :micropost_id, @micropost.id %>
         <br>

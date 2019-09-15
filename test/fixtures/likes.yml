@@ -1,9 +1,7 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  micropost: one
-  user: one
+  micropost: orange
+  user: archer
 
 two:
-  micropost: two
-  user: two
+  micropost: most_recent
+  user: lana

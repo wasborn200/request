@@ -12,6 +12,10 @@ class Micropost < ApplicationRecord
 
   private
 
+  def self.create_all_ranks
+    Micropost.find(Like.group(:micropost_id).order('count(micropost_id)desc').limit(5).pluck(:micropost_id))
+  end
+
     # アップロードされた画像のサイズをバリデーションする
     def picture_size
       if picture.size > 5.megabytes

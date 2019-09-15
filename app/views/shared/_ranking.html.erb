@@ -1,0 +1,19 @@
+<% if @all_ranks.any? %>
+<section class="ranking">
+  <h2>全ての投稿ランキング</h2>
+  <% @all_ranks.each.with_index(1) do |micropost, i| %>
+  <h3>第<%= i %>位</h3>
+  <%= micropost.title %>
+  <% end %>
+</section>
+<% end %>
+
+<% if @my_ranks.any? %>
+<section class="ranking">
+  <h2>自分の投稿ランキング</h2>
+  <% @my_ranks.each.with_index(1) do |micropost, i| %>
+  <h3>第<%= i %>位</h3>
+  <%= micropost.title %>
+  <% end %>
+</section>
+<% end %>

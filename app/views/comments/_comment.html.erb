@@ -8,6 +8,7 @@
         <hr>
       </div>
     <% end %>
+    <%= will_paginate @comments %>
   <% end %>
   <%= form_for [@micropost, @comment] do |f| %>
     <%= render 'shared/error_messages', object: f.object %>

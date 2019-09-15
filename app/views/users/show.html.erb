@@ -10,6 +10,14 @@
     <section class="stats">
       <%= render 'shared/stats' %>
     </section>
+
+    <h3>いいねしている投稿</h3>
+    <% @user.liked_posts.each do |micropost| %>
+      <%= micropost.user.name %>
+      <%= micropost.title %>
+      <%= micropost.content %>
+    <% end %>
+
   </aside>
   <div class="col-md-8">
     <%= render 'follow_form' if logged_in? %>

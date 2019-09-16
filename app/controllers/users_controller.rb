@@ -86,7 +86,8 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password,
                                       :password_confirmation,
-                                      :follow_notification)
+                                      :follow_notification,
+                                      :unique_name)
     end
 
     # beforeアクション

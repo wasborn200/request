@@ -12,7 +12,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       post users_path, params: { user: { name: "",
                                         email: "user@invalid",
                                         password: "foo",
-                                        password_confirmation: "bar" } }
+                                        password_confirmation: "bar",
+                                        unique_name: "" } }
     end
     assert_template 'users/new'
     assert_select 'form[action="/signup"]'
@@ -26,7 +27,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       post users_path, params: { user: {name: "Example User",
                                        email: "user@example.com",
                                        password: "password",
-                                       passowrd_confirmation: "password" } }
+                                       passowrd_confirmation: "password",
+                                       unique_name: "example_user" } }
     end
     assert_equal 1, ActionMailer::Base.deliveries.size
     user = assigns(:user)
@@ -42,7 +44,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_not is_logged_in?
     # 有効かトークンが正しい場合
     get edit_account_activation_path(user.activation_token, email: user.email)
-    assert user.reload.activated?  
+    assert user.reload.activated?
     follow_redirect!
     assert_template 'users/show'
     assert is_logged_in?

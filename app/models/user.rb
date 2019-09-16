@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  before_save :downcase_unique_name
   has_many :microposts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
@@ -16,6 +17,11 @@ class User < ApplicationRecord
   before_create :create_activation_digest
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+  VALID_UNIQUE_NAME_REGEX = /\A[a-z0-9_]+\z/i
+  validates :unique_name, presence: true,
+                          length: { in: 5..15 },
+                          format: { with: VALID_UNIQUE_NAME_REGEX },
+                          uniqueness: { case_sensitive: false }
   validates :email, presence: true, length: { maximum: 255 },
                      format: { with: VALID_EMAIL_REGEX },
                      uniqueness: { case_sensitive: false }
@@ -124,5 +130,10 @@ class User < ApplicationRecord
     def create_activation_digest
       self.activation_token  = User.new_token
       self.activation_digest = User.digest(activation_token)
+    end
+
+    # 一意ユーザー名を全て小文字にする
+    def downcase_unique_name
+      self.unique_name.downcase!
     end
 end

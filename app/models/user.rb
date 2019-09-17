@@ -12,6 +12,12 @@ class User < ApplicationRecord
                                    dependent:   :destroy
   has_many :following, through: :active_relationships,  source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+  has_many :from_messages, class_name: "Message",
+           foreign_key: "from_id", dependent: :destroy
+  has_many :to_messages, class_name: "Message",
+           foreign_key: "to_id", dependent: :destroy
+  has_many :sent_messages, through: :from_messages, source: :from
+  has_many :received_mezzages, through: :to_messagesm, source: :to
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
   before_create :create_activation_digest
@@ -117,6 +123,11 @@ class User < ApplicationRecord
   # すでにイイねをしていたらtrueを返す
   def already_liked?(micropost)
     self.likes.exists?(micropost_id: micropost.id)
+  end
+
+  # メッセージを送る
+  def send_message(other_user, room_id, content)
+    from_messages.create!(to_id: other_user.id, room_id: room_id, content: content)
   end
 
   private

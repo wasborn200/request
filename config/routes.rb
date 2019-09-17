@@ -21,4 +21,5 @@ Rails.application.routes.draw do
     resources :likes, only:[:create, :destroy]
   end
   resources :relationships,       only: [:create, :destroy]
+  mount ActionCable.server => '/cable'
 end

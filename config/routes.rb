@@ -17,9 +17,10 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :microposts do
-    resources :comments, only:[:create, :destroy]
-    resources :likes, only:[:create, :destroy]
+    resources :comments,          only: [:create, :destroy]
+    resources :likes,             only: [:create, :destroy]
   end
   resources :relationships,       only: [:create, :destroy]
+  resources :messages,            only: [:index]
   mount ActionCable.server => '/cable'
 end

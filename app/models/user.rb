@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   before_save :downcase_unique_name
   has_many :microposts, dependent: :destroy
+  has_many :favlists, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :liked_posts, through: :likes, source: :micropost

@@ -22,5 +22,6 @@ Rails.application.routes.draw do
   end
   resources :relationships,       only: [:create, :destroy]
   resources :messages,            only: [:index]
+  resources :favlists
   mount ActionCable.server => '/cable'
 end

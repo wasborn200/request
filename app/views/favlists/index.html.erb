@@ -1,0 +1,13 @@
+<h2>お気に入り一覧</h2>
+<%= link_to "お気に入りを作成する", new_favlist_path %>
+<% @favlists.each do |f| %>
+<div class="card well" style="max-width: 50rem;">
+  <div class="card-header">
+    名前：
+    <%= link_to "#{f.title}", favlist_path(f) %>
+  </div>
+  <div class="card-body">
+      コメント：<%= f.memo %>
+  </div>
+</div>
+<% end %>

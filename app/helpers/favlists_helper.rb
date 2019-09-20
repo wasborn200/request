@@ -1,0 +1,2 @@
+module FavlistsHelper
+end

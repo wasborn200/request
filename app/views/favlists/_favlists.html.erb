@@ -1,0 +1,10 @@
+<li class="card well" id="favlist-<%= favlist.id %>">
+  <span class="title"><%= link_to favlist.title, favlist %></span>
+  <span class="content">
+    <%= favlist.memo %>
+    <% if current_user?(favlist.user) %>
+      <%= link_to "delete", favlist, method: :delete,
+                                      data: { confirm: "You sure?"} %>
+    <% end %>
+  </span>
+</li>

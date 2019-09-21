@@ -3,6 +3,8 @@ class Micropost < ApplicationRecord
   has_many :comments
   has_many :likes
   has_many :liked_users, through: :likes, source: :user
+  has_many :favorites, foreign_key: 'micropost_id', dependent: :destroy
+  has_many :favlists, through: :favorites
   default_scope -> { order(created_at: :desc) }
   mount_uploader :picture, PictureUploader
   validates :user_id, presence: true

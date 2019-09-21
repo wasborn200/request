@@ -27,6 +27,7 @@ class MicropostsController < ApplicationController
     @comments = @micropost.comments.paginate(page: params[:page], per_page: 10)
     @comment = Comment.new
     @like = Like.new
+    @favlists = current_user.favlists.all
   end
 
   def edit

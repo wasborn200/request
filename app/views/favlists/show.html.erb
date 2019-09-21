@@ -2,6 +2,7 @@
 <div class="row">
   <span class="content">
     <%= @favlist.memo %>
+    <%= @favlist.favposts.count %>
   </span>
 </div>
 <%= link_to "お気に入り一覧に戻る", favlists_path %>

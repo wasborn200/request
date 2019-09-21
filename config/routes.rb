@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
+  post   '/like',    to: 'favorites#create'
+  delete '/unlike',  to: 'favorites#destroy'
   resources :users do
     member do
       get :following, :followers
@@ -22,6 +24,11 @@ Rails.application.routes.draw do
   end
   resources :relationships,       only: [:create, :destroy]
   resources :messages,            only: [:index]
-  resources :favlists
+  resources :favlists do
+    member do
+      get :likes
+    end
+  end
+  resources :favorites,           only: [:create, :destroy]
   mount ActionCable.server => '/cable'
 end

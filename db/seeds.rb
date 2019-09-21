@@ -35,3 +35,6 @@ following = users[2..50]
 followers = users[3..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
+
+# お気に入り
+user.favlists.create!(title: "favorite", content: "test")

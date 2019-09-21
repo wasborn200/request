@@ -1,5 +1,16 @@
 class FavlistsController < ApplicationController
 
+  def likes
+    @favlist = Favlist.find(params[:id])
+    @favpost = @favlist.favposts.page(params[:page])
+    counts(@favlist)
+  end
+
+  # 元データ
+  #   @user = User.find(params[:id])
+  #   @favposts = @user.favposts.page(params[:page])
+  #   counts(@user)
+
   def create
     @favlist = current_user.favlists.build(favlist_params)
     if @favlist.save
@@ -22,6 +33,9 @@ class FavlistsController < ApplicationController
 
   def show
     @favlist = Favlist.find(params[:id])
+    @favorites = Favorites.where(@favlist)
+    @micropost =
+    @micropost = Micropost.where(favlist_id IN (?), favlist_id: @favlist.id, favorites)
   end
 
   def index

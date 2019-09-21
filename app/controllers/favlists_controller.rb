@@ -34,7 +34,7 @@ class FavlistsController < ApplicationController
   def show
     @favlist = Favlist.find(params[:id])
     @microposts = @favlist.favposts.map(&:id)
-    # micropost_ids = Favorites.where(favlist_id: @favlist.id)
+    @micropost = Micropost.new
   end
 
   def index

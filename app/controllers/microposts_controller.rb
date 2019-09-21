@@ -62,8 +62,7 @@ class MicropostsController < ApplicationController
   private
 
     def micropost_params
-      params.require(:micropost).permit(:title, :content, :picture)
-      # ここに音楽ファイル追加したい
+      params.require(:micropost).permit(:title, :content, :picture, :collablist)
     end
 
     def correct_user

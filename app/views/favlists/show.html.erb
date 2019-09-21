@@ -2,7 +2,9 @@
 <div class="row">
   <span class="content">
     <%= @favlist.memo %>
-    <%= @favlist.favposts.count %>
+    <% @favorites.each do |f| %>
+    <%= @micropost.find(f.micropost_id).title %>
+    <% end %>
   </span>
 </div>
 <%= link_to "お気に入り一覧に戻る", favlists_path %>

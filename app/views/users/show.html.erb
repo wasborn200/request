@@ -10,10 +10,8 @@
     <section class="stats">
       <%= render 'shared/stats' %>
     </section>
-
     <%= render 'microposts/my_likes_micropost' %>
-    <%= render 'messages/message_interface' %>
-
+    <%= link_to "メーセージを送る", message_user_path, class: "btn btn-lg btn-primary" %>
   </aside>
   <div class="col-md-8">
     <%= render 'follow_form' if logged_in? %>

@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy,
-                                        :following, :followers]
+                                        :following, :followers, :message]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
-  before_action :require_user,   only: [:show, :edit, :update, :following, :followers]
+  before_action :require_user,   only: [:show, :edit, :update, :following, :followers, :message]
 
   def index
     if params[:q] && params[:q].reject { |key, value| value.blank? }.present?
@@ -76,6 +76,11 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
+  def message
+    @room_id = message_room_id(current_user, @user)
+    @messages = Message.recent_in_room(@room_id)
+  end
+
   def message_room_id(first_user, second_user)
     first_id = first_user.id.to_i
     second_id = second_user.id.to_i
@@ -85,6 +90,7 @@ class UsersController < ApplicationController
       "#{second_user.id}-#{first_user.id}"
     end
   end
+
 
     private
 

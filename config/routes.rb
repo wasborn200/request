@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   delete '/unlike',  to: 'favorites#destroy'
   resources :users do
     member do
-      get :following, :followers
+      get :following, :followers, :message
     end
   end
   resources :users

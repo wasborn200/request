@@ -2,9 +2,20 @@
 <div class="row">
   <span class="content">
     <%= @favlist.memo %>
-    <% @favorites.each do |f| %>
-    <%= @micropost.find(f.micropost_id).title %>
-    <% end %>
+    favpost
+    <%= @favlist.favposts.count %>
+
+    <div class="card well" style="max-width: 50rem;">
+      <% @microposts.each do |f| %>
+        <div class="row">
+          <%= link_to "#{Micropost.find(f).title}", micropost_path(f) %>
+        </div>
+      <% end %>
+    </div>
+    <%= render 'favlist_edit_delete' %>
+
   </span>
 </div>
 <%= link_to "お気に入り一覧に戻る", favlists_path %>
+
+<%= render 'favlists/collabpost_form' %>

@@ -1,8 +1,12 @@
-<%= form_for(@favlist) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <div class="field">
-    <%= f.text_area :title, placeholder: "Title..." %>
-    <%= f.text_area :memo, placeholder: "Memo..." %>
+<% provide(:title, 'New favlist') %>
+<% provide(:url, new_favlist_path) %>
+<% provide(:button_text, 'お気に入りリストを作成する') %>
+<div class="row">
+  <h1>お気に入りリスト作成</h1>
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <section class="favlist_form">
+      <%= render 'favlists/favlist_form' %>
+    </section>
   </div>
-  <%= f.submit "お気に入りリストを作成する", class: "btn btn-primary" %>
-<% end %>
+</div>

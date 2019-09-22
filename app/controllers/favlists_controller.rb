@@ -1,15 +1,12 @@
 class FavlistsController < ApplicationController
+  before_action :logged_in_user, only: [:create, :destroy, :new]
+  before_action :correct_user,   only: [:show, :edit, :destroy, :update]
+  before_action :require_favlist, only: [:likes, :show, :edit, :update]
 
   def likes
-    @favlist = Favlist.find(params[:id])
     @favpost = @favlist.favposts.page(params[:page])
     counts(@favlist)
   end
-
-  # 元データ
-  #   @user = User.find(params[:id])
-  #   @favposts = @user.favposts.page(params[:page])
-  #   counts(@user)
 
   def create
     @favlist = current_user.favlists.build(favlist_params)
@@ -32,14 +29,24 @@ class FavlistsController < ApplicationController
   end
 
   def show
-    @favlist = Favlist.find(params[:id])
-    @favorites = Favorites.where(@favlist)
-    @micropost =
-    @micropost = Micropost.where(favlist_id IN (?), favlist_id: @favlist.id, favorites)
+    @microposts = @favlist.favposts.map(&:id)
+    @micropost = Micropost.new
   end
 
   def index
     @favlists = current_user.favlists.all
+  end
+
+  def edit
+  end
+
+  def update
+    if @favlist.update_attributes(favlist_params)
+      flash[:success] = "Favlist updated"
+      redirect_to favlist_path(@favlist)
+    else
+      render 'edit'
+    end
   end
 
   private
@@ -53,5 +60,8 @@ class FavlistsController < ApplicationController
       redirect_to root_url if @favlist.nil?
     end
 
+    def require_favlist
+      @favlist = Favlist.find(params[:id])
+    end
 
 end

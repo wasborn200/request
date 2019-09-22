@@ -1,0 +1,6 @@
+<h3>いいねしている投稿</h3>
+<% @user.liked_posts.each do |micropost| %>
+  <%= micropost.user.name %>
+  <%= micropost.title %>
+  <%= micropost.content %>
+<% end %>

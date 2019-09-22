@@ -1,0 +1,8 @@
+<%= form_for(@favlist, url: yield(:url)) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_area :title, placeholder: "Title..." %>
+    <%= f.text_area :memo, placeholder: "Memo..." %>
+  </div>
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>

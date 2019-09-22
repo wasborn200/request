@@ -1,6 +1,7 @@
 class MicropostsController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy, :new]
   before_action :correct_user,   only: [:destroy, :update, :edit]
+  before_action :require_micropost, only: [:show, :edit, :update]
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
@@ -23,7 +24,6 @@ class MicropostsController < ApplicationController
   end
 
   def show
-    @micropost = Micropost.find(params[:id])
     @comments = @micropost.comments.paginate(page: params[:page], per_page: 10)
     @comment = Comment.new
     @like = Like.new
@@ -31,11 +31,9 @@ class MicropostsController < ApplicationController
   end
 
   def edit
-    @micropost = Micropost.find(params[:id])
   end
 
   def update
-    @micropost = Micropost.find(params[:id])
     if @micropost.update_attributes(micropost_params)
       flash[:success] = "Micropost updated"
       redirect_to micropost_path(@micropost)
@@ -70,4 +68,7 @@ class MicropostsController < ApplicationController
       redirect_to root_url if @micropost.nil?
     end
 
+    def require_micropost
+      @micropost = Micropost.find(params[:id])
+    end
 end

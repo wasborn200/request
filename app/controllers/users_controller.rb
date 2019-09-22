@@ -3,6 +3,7 @@ class UsersController < ApplicationController
                                         :following, :followers]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
+  before_action :require_user,   only: [:show, :edit, :update, :following, :followers]
 
   def index
     if params[:q] && params[:q].reject { |key, value| value.blank? }.present?
@@ -16,7 +17,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
     redirect_to root_url and return unless @user.activated?
     if params[:q] && params[:q].reject { |key, value| value.blank? }.present?
       @q = @user.microposts.ransack(microposts_search_params)
@@ -47,11 +47,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
       redirect_to @user
@@ -68,14 +66,12 @@ class UsersController < ApplicationController
 
   def following
     @title = "Following"
-    @user  = User.find(params[:id])
     @users = @user.following.paginate(page: params[:page])
     render 'show_follow'
   end
 
   def followers
     @title = "Followers"
-    @user  = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
   end
@@ -114,6 +110,10 @@ class UsersController < ApplicationController
     # 管理者かどうか確認
     def admin_user
       redirect_to(root_url) unless current_user.admin?
+    end
+
+    def require_user
+      @user = User.find(params[:id])
     end
 
 end

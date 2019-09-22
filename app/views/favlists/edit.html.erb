@@ -1,0 +1,12 @@
+<% provide(:title, 'Edit Favlist') %>
+<% provide(:url, favlist_path) %>
+<% provide(:button_text, 'Edit Favlist') %>
+<div class="row">
+  <h1>Edit Favlist</h1>
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <section class="favlist_form">
+      <%= render 'favlists/favlist_form' %>
+    </section>
+  </div>
+</div>

@@ -1,55 +1,55 @@
 orange:
+  title: Song
   content: "I just ate an orange!"
   created_at: <%= 10.minutes.ago %>
   user: michael
-  title: Song
 
 tau_manifesto:
+  title: First post
   content: "Check out the @tauday site by @mhartl: http://tauday.com"
   created_at: <%= 3.years.ago %>
   user: michael
-  title: First post
 
 cat_video:
+  title: My guiter
   content: "Sad cats are sad: http://youtu.be/PKffm2uI4dk"
   created_at: <%= 2.hours.ago %>
   user: michael
-  title: My guiter
 
 most_recent:
+  title: Piano
   content: "Writing a short test"
   created_at: <%= Time.zone.now %>
   user: michael
-  title: Piano
 
 <% 30.times do |n| %>
 micropost_<%= n %>:
+  title: <%= Faker::Music.instrument %>
   content: <%= Faker::Lorem.sentence(5) %>
   created_at: <%= 42.days.ago %>
   user: michael
-  title: <%= Faker::Music.instrument %>
 <% end %>
 
 ants:
+  title: title of mine
   content: "Oh, is that what you want? Because that's how you get ants!"
   created_at: <%= 2.years.ago %>
   user: archer
-  title: title of mine
 
 zone:
+  title: stage of the  ground
   content: "Danger zone!"
   created_at: <%= 3.days.ago %>
   user: archer
-  title: stage of the ground
 
 tone:
+  title: rain
   content: "I'm sorry. Your words made sense, but your sarcastic tone did not."
   created_at: <%= 10.minutes.ago %>
   user: lana
-  title: rain
 
 van:
+  title: sea
   content: "Dude, this van's, like, rolling probable cause."
   created_at: <%= 4.hours.ago %>
   user: lana
-  title: sea

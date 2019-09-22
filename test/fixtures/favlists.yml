@@ -1,11 +1,14 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+RnB:
+  title: R&B
+  memo: "my favorite R&B songs"
+  user: michael
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+POP:
+  title: R&B
+  memo: "I like this music"
+  user: michael
+
+JPOP:
+  title: JPOP
+  memo: "I like japan"
+  user: lana

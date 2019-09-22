@@ -1,0 +1,7 @@
+<div class="row">
+  <% if current_user?(@favlist.user) %>
+  <%= link_to "edit", edit_favlist_path, class: "btn btn-lg btn-primary" %>
+  <%= link_to "delete", @favlist, method: :delete,
+            data: { confirm: "You sure?"}, class: "btn btn-lg btn-danger" %>
+  <% end %>
+</div>

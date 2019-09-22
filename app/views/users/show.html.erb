@@ -11,31 +11,8 @@
       <%= render 'shared/stats' %>
     </section>
 
-    <h3>いいねしている投稿</h3>
-    <% @user.liked_posts.each do |micropost| %>
-      <%= micropost.user.name %>
-      <%= micropost.title %>
-      <%= micropost.content %>
-    <% end %>
-
-    <% if !current_user?(@user) && logged_in? %>
-      <section class="message_box">
-        <div id="messages">
-          <%= render @messages %>
-        </div>
-      </section>
-      <script type="text/javascript">
-        var height = 0;
-        $("div.message").each( function() {
-          height += ($(this).height());
-        });
-        $('section.message_box').scrollTop(height);
-      </script>
-      <div class="message_form">
-       <%= render 'messages/message_form',
-         {from_user: current_user, to_user: @user, room_id: @room_id} %>
-      </div>
-    <% end %>
+    <%= render 'microposts/my_likes_micropost' %>
+    <%= render 'messages/message_interface' %>
 
   </aside>
   <div class="col-md-8">

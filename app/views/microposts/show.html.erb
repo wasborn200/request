@@ -5,18 +5,6 @@
     <%= render 'micropost_edit_delete' %>
     <%= render 'comments/comment' %>
     <%= render 'favlists/favlists_like' %>
-    <div class="card well" style="max-width: 50rem;">
-      <% if @favlists.any? %>
-        <% if @micropost.collablist.nil? %>
-        <% else %>
-        <h3>コラボリスト</h3>
-        <% @micropost.collablist.split(' ').each do |f| %>
-          <div class="row">
-            <%= link_to "#{Micropost.find(f).title}", micropost_path(f) %>
-          </div>
-        <% end %>
-        <% end %>
-      <% end %>
-    </div>
+    <%= render 'favorites/collabpost' %>
   </div>
 </div>

@@ -1,9 +1,7 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+like1:
+  favlist: RnB
+  micropost: orange
 
-one:
-  favlist: one
-  micropost: one
-
-two:
-  favlist: two
-  micropost: two
+like2:
+  favlist: JPOP
+  micropost: orange

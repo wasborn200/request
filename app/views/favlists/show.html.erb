@@ -12,41 +12,10 @@
         </div>
       <% end %>
     </div>
+    <%= render 'favlist_edit_delete' %>
 
   </span>
 </div>
 <%= link_to "お気に入り一覧に戻る", favlists_path %>
 
-<% if @favlist.favposts.any? %>
-<div class="row">
-  <h1>New collabpost create!</h1>
-  <div class="col-md-2"></div>
-  <div class="col-md-8">
-    <section>
-      <%= form_for(@micropost, url: microposts_path) do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
-        <div class="field">
-          <%= f.text_area :title, placeholder: "Title..." %>
-          <%= f.text_area :content, placeholder: "Compose new micropost..." %>
-          <%= f.hidden_field :collablist, :value => @microposts %>
-        </div>
-        <%= f.submit "コラボ投稿する", class: "btn btn-primary" %>
-        <span class="picture">
-          <%= f.file_field :picture, accept: 'image/jpeg, image/gif, image/png,
-                                            audio/mp3, audio/wav, video/mp4' %>
-        </span>
-      <% end %>
-
-      <script type="text/javascript">
-        $('#micropost_picture').bind('change', function(){
-          var size_in_megabytes = this.files[0].size/1024/1024;
-          if (size_in_megabytes > 5){
-            alert('Maximum file size is 5MB. Please choose a smaller file.');
-          }
-        });
-      </script>
-
-    </section>
-  </div>
-</div>
-<% end %>
+<%= render 'favlists/collabpost_form' %>

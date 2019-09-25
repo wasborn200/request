@@ -14,7 +14,7 @@ $gray-medium-light: #eaeaea;
 /* universal */
 
 body {
-  padding-top: 60px;
+  padding-top: 0px;
 }
 
 section {
@@ -62,6 +62,80 @@ p {
 
 
 /* header */
+
+header h1 {
+  margin: 10px;
+  width: 200px;
+}
+
+.head-myaccount-box {
+  background: #333;
+  width: 320px;
+  min-height: 60px;
+  border-radius: 6px;
+  position: absolute;
+  top: 5px;
+  right: 0;
+  .head-myaccount-gravatar {
+    display: block;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    overflow: hidden;
+  }
+  .head-myaccount-info {
+    display: table;
+    vertical-align: middle;
+    height: 50px;
+    padding: 5px 7px 5px 67px;
+    cursor: pointer;
+    width: 322px;
+    .head-myaccount-detail {
+      display: table-cell;
+      vertical-align: middle;
+      .head-myaccount-name {
+        color: #bfa34c;
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 1.2;
+        display: block;
+      }
+      .head-myaccount-unique_name {
+        color: #ccc;
+        font-size: 12px;
+        line-height: 1.2;
+        display: block;
+      }
+    }
+    .head-myaccount-right {
+      width: 60px;
+      position: absolute;
+      top: 6px;
+      right: 15px;
+      display: block;
+      text-align: right;
+      padding-right: 2px;
+      font-size: 10px;
+      line-height: 15px;
+      .head-myaccount-follow_unfollow-text {
+        color: #6be52e;
+      }
+      .dropdown-menu {
+        width: 290px;
+        right: 0;
+        left: auto;
+        &::before {left:auto !important; right:9px;}
+        &::after {left:auto !important; right:10px;}
+        background-color: #333;
+        a {
+        color: #ccc;
+        }
+      }
+    }
+  }
+}
 
 #logo {
   float: left;

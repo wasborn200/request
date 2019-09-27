@@ -45,6 +45,8 @@ class MicropostsController < ApplicationController
   def index
     if logged_in?
       @micropost = Micropost.all
+      @all_ranks = Micropost.create_all_ranks
+      @my_ranks = []
       if params[:q] && params[:q].reject { |key, value| value.blank? }.present?
         @q = Micropost.ransack(microposts_search_params)
         @feed_items = @q.result.paginate(page: params[:page])

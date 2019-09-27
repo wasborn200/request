@@ -32,6 +32,18 @@ textarea {
   }
 }
 
+.pagetitle {
+  width: auto;
+  margin: 0 auto 10px;
+  padding: 4px 4px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  box-sizing: border-box;
+  color: #fff;
+  background-color: #293c66;
+  border-radius: 32px;
+}
 
 /* typography */
 
@@ -65,7 +77,7 @@ p {
 
 header h1 {
   margin: 10px;
-  width: 200px;
+  width: 100px;
 }
 
 .head-myaccount-box {
@@ -346,10 +358,14 @@ input {
   .content {
     display: block;
     margin-left: 60px;
-    img {
+    img, audio, video {
       display: block;
       padding: 5px 0;
     }
+  }
+  .status {
+    display: block;
+    margin-left: 10px;
   }
   .timestamp {
     color: $gray-light;
@@ -358,8 +374,8 @@ input {
   }
   .gravatar {
     float: left;
+    margin-left: 10px;
     margin-right: 10px;
-    margin-top: 5px;
   }
 }
 
@@ -392,6 +408,10 @@ span.picture {
       width: 50px;
     }
   }
+}
+
+.micropost_create_button {
+  margin-bottom: 20px;
 }
 
 /* message */

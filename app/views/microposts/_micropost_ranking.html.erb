@@ -1,3 +1,5 @@
+<% @all_ranks.each.with_index(1) do |micropost, i| %>
+<h3>第<%= i %>位</h3>
 <div id="micropost-<%= micropost.id %>">
   <ul class="list-group list-group-flush">
     <li class="list-group-item bg-primary">
@@ -35,3 +37,4 @@
     </li>
   </ul>
 </div>
+<% end %>

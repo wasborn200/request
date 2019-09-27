@@ -55,18 +55,19 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     assert_select 'a', text: 'delete', count: 0
   end
 
-  test "micropost sidebar count" do
-    log_in_as(@user)
-    get root_path
-    assert_match "#{@user.microposts.count} microposts", response.body
-    # まだマイクロポストを投稿していないユーザー
-    other_user = users(:malory)
-    log_in_as(other_user)
-    get root_path
-    assert_match "0 microposts", response.body
-    other_user.microposts.create!(title: "this song", content: "A micropost")
-    get root_path
-    assert_match "1 micropost", response.body
-  end
+  # マイクロポストの数を表示するページをマイページからマイクロポストshow、ユーザーshowに移す予定
+  # test "micropost sidebar count" do
+  #   log_in_as(@user)
+  #   get root_path
+  #   assert_match "#{@user.microposts.count} microposts", response.body
+  #   # まだマイクロポストを投稿していないユーザー
+  #   other_user = users(:malory)
+  #   log_in_as(other_user)
+  #   get root_path
+  #   assert_match "0 microposts", response.body
+  #   other_user.microposts.create!(title: "this song", content: "A micropost")
+  #   get root_path
+  #   assert_match "1 micropost", response.body
+  # end
 
 end

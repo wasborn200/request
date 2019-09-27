@@ -22,6 +22,13 @@ User.create!(name:  "Example User",
 end
 
 # マイクロポスト
+user = User.first
+10.times do
+  title = Faker::Music.instrument
+  content = Faker::Lorem.sentence(5)
+  user.microposts.create!(title: title, content: content)
+end
+
 users = User.order(:created_at).take(6)
 50.times do
   title = Faker::Music.instrument
@@ -38,14 +45,27 @@ end
 
 # リレーションシップ
 users = User.all
-user  = users.first
 following = users[2..50]
 followers = users[3..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
 
-# いいね登録
-# user = User.first
-# microposts = Micropost.all
-# test = microposts[1..50]
-# test.each { |micropost| user.likes.create(micropost) }
+# 自分の投稿に対してのいいね
+user4 = users[40..42]
+user5 = users[12..18]
+user6 = users[34..35]
+user4.each { |user| user.likes.create!(micropost_id: 1) }
+user5.each { |user| user.likes.create!(micropost_id: 2) }
+user6.each { |user| user.likes.create!(micropost_id: 3) }
+
+# いいねランキング
+microposts = Micropost.all
+user1 = users[1..43]
+user2 = users[1..29]
+user3 = users[1..17]
+micropost1 = microposts[57]
+micropost2 = microposts[140]
+micropost3 = microposts[245]
+user1.each { |user| user.likes.create!(micropost_id: micropost1.id) }
+user2.each { |user| user.likes.create!(micropost_id: micropost2.id) }
+user3.each { |user| user.likes.create!(micropost_id: micropost3.id) }

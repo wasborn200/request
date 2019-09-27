@@ -2,21 +2,16 @@
   <div class="col-md-12 pagename">
     <h3 class="pagetitle">マイページ</h3>
   </div>
-  <aside class="col-md-6">
-    <%= render 'shared/ranking' %>
-  </aside>
+  <%= render 'shared/ranking' %>
   <div class="col-md-6">
     <div class="row">
       <div class="col-md-12">
-        <h3>Micropost Feed</h3>
-      </div>
-      <div class="micropost_create_button col-md-4">
-        <%= link_to "Create post", new_micropost_path, class: "btn btn-lg btn-primary" %>
+        <h3 class="pagetitle">フォローしているユーザーの投稿</h3>
       </div>
       <div class="search_form">
         <%= render 'shared/microposts_search_form' %>
       </div>
     </div>
-      <%= render 'shared/feed' %>
+    <%= render 'shared/feed' %>
   </div>
 </div>

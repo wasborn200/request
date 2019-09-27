@@ -1,27 +1,22 @@
-<h2>お気に入り一覧</h2>
+<h3 class="pagetitle"><%= "お気に入りリスト" %></h3>
 <%= link_to "お気に入りを作成する", new_favlist_path %>
-<% @favlists.each do |favlist| %>
-<div class="card well" style="max-width: 50rem;">
-  <div class="card-header">
-    名前：
+<ul class="list-group list-group-flush">
+  <% @favlists.each do |favlist| %>
+  <li class="list-group-item bg-primary">
     <%= link_to "#{favlist.title}", favlist_path(favlist) %>
-  </div>
-  <div class="card-body">
-      コメント：<%= favlist.memo %>
-      <% if favlist.favpost?(@micropost) %>
-        <%= form_for(favlist.favorites.find_by(micropost_id: @micropost.id), html: { method: :delete }) do |f| %>
-          <%= hidden_field_tag :favlist_id, favlist.id %>
-          <%= hidden_field_tag :micropost_id, @micropost.id %>
-          <%= f.submit 'お気に入り登録解除', class: 'btn btn-danger' %>
-        <% end %>
-      <% else %>
-        <%= form_for(favlist.favorites.build) do |f| %>
-          <%= hidden_field_tag :favlist_id, favlist.id %>
-          <%= hidden_field_tag :micropost_id, @micropost.id %>
-          <%= f.submit 'お気に入り登録', class: 'btn btn-primary' %>
-        <% end %>
+    <% if favlist.favpost?(@micropost) %>
+      <%= form_for(favlist.favorites.find_by(micropost_id: @micropost.id), html: { method: :delete }) do |f| %>
+      <%= hidden_field_tag :favlist_id, favlist.id %>
+      <%= hidden_field_tag :micropost_id, @micropost.id %>
+      <%= f.submit 'お気に入り登録解除', class: 'btn btn-danger' %>
       <% end %>
-
-  </div>
-</div>
+    <% else %>
+      <%= form_for(favlist.favorites.build) do |f| %>
+      <%= hidden_field_tag :favlist_id, favlist.id %>
+      <%= hidden_field_tag :micropost_id, @micropost.id %>
+      <%= f.submit 'お気に入り登録', class: 'btn btn-primary' %>
+    <% end %>
+    <% end %>
+  </li>
 <% end %>
+</ul>

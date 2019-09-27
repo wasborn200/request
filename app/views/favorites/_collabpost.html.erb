@@ -1,13 +1,13 @@
-<div class="card well" style="max-width: 50rem;">
   <% if @favlists.any? %>
     <% if @micropost.collablist.nil? %>
     <% else %>
+    <div class="card well" style="max-width: 50rem;">
     <h3>コラボリスト</h3>
     <% @micropost.collablist.split(' ').each do |f| %>
       <div class="row">
         <%= link_to "#{Micropost.find(f).title}", micropost_path(f) %>
       </div>
     <% end %>
+    </div>
     <% end %>
   <% end %>
-</div>

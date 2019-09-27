@@ -9,7 +9,7 @@ class FavlistCreateTest < ActionDispatch::IntegrationTest
   test "favlist interface" do
     log_in_as(@user)
     get new_favlist_path
-    assert_select 'form[action="/favlists/new"]'
+    assert_select 'form[action="/favlists"]'
     # 無効な送信
     assert_no_difference 'Favlist.count' do
       post favlists_path, params: { favlist: { title: "", memo: "" } }

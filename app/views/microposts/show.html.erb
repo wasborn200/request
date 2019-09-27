@@ -1,10 +1,14 @@
 <div class="row">
-  <div class="col-md-2"></div>
-  <div class="col-md-8">
+  <div class="col-md-12 pagename">
+    <h3 class="pagetitle"><%= "#{@micropost.user.name}の投稿" %></h3>
+  </div>
+  <div class="col-sm-8">
     <%= render 'one_micropost' %>
+    <%= render 'favorites/collabpost' %>
     <%= render 'micropost_edit_delete' %>
     <%= render 'comments/comment' %>
+  </div>
+  <div class="col-sm-4">
     <%= render 'favlists/favlists_like' %>
-    <%= render 'favorites/collabpost' %>
   </div>
 </div>

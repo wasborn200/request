@@ -52,7 +52,7 @@ class MicropostsController < ApplicationController
         @q = Micropost.none.ransack
         @feed_items = Micropost.paginate(page: params[:page])
       end
-      @url = root_path
+      @url = microposts_path
     end
   end
 

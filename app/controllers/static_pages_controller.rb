@@ -6,10 +6,10 @@ class StaticPagesController < ApplicationController
       @my_ranks  = @all_ranks.select{ |micropost| micropost.user_id == current_user.id }
       if params[:q] && params[:q].reject { |key, value| value.blank? }.present?
         @q = current_user.feed.ransack(microposts_search_params)
-        @feed_items = @q.result.paginate(page: params[:page])
+        @feed_items = @q.result.paginate(page: params[:page], per_page: 10)
       else
         @q = Micropost.none.ransack
-        @feed_items = current_user.feed.paginate(page: params[:page])
+        @feed_items = current_user.feed.paginate(page: params[:page], per_page: 10)
       end
       @url = root_path
     end

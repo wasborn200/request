@@ -1,21 +1,24 @@
-<div class="row">
-  <h2>コメント一覧</h2>
+
+<ul class="list-group list-group-flush">
+  <li class="list-group-item">
+    <span>コメント一覧</span>
+  </li>
+  <li class="list-group-item">
   <% if @comments.any? %>
     <% @comments.each do |c| %>
-      <div>
-        <a href="/users/<%= @micropost.user_id %>"><%= c.user.name %></a>
-        @<%= c.user.unique_name %>
-        <br><%= c.content %>
-        <hr>
-      </div>
+
+      <a href="/users/<%= @micropost.user_id %>"><%= c.user.name %></a>
+      @<%= c.user.unique_name %> : <%= c.content %>
+      <br>
     <% end %>
     <%= will_paginate @comments %>
   <% end %>
-  <%= form_for [@micropost, @comment] do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
-    <%= f.text_field :content %>
-    <%= hidden_field_tag :micropost_id, @micropost.id %>
-    <br>
-    <%= f.submit 'コメントする' %>
-  <% end %>
-</div>
+  </li>
+</ul>
+<%= form_for [@micropost, @comment] do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <%= f.text_field :content %>
+  <%= hidden_field_tag :micropost_id, @micropost.id %>
+  <br>
+  <%= f.submit 'コメントする' %>
+<% end %>

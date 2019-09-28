@@ -1,0 +1,27 @@
+<% if @comments.any? %>
+<h3 class="pagetitle">新着コメント</h3>
+<div class="row">
+  <div class="col-sm-12">
+      <% @comments.each do |c| %>
+      <% micropost = Micropost.find(c.micropost_id) %>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <%= link_to gravatar_for(c.user, size: 40), c.user %>
+            <span class="user"><%= link_to c.user.name, c.user %></span>
+            <span><%= link_to "@ #{c.user.unique_name}", c.user %></span>
+            <br>
+            <span class="timestamp">
+              Posted <%= time_ago_in_words(c.created_at) %> ago.
+            </span>
+          </li>
+          <li class="list-group-item">
+            <%= c.content %>
+          </li>
+          <li class="list-group-item">
+            for <%= link_to micropost.title, micropost %>
+          </li>
+        </ul>
+      <% end %>
+  </div>
+</div>
+<% end %>

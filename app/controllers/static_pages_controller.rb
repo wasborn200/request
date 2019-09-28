@@ -4,6 +4,7 @@ class StaticPagesController < ApplicationController
       @micropost = current_user.microposts.build
       @all_ranks = Micropost.create_all_ranks
       @my_ranks  = @all_ranks.select{ |micropost| micropost.user_id == current_user.id }
+      @comments = Comment.where(micropost_id: micropost_ids).last(3).reverse
       if params[:q] && params[:q].reject { |key, value| value.blank? }.present?
         @q = current_user.feed.ransack(microposts_search_params)
         @feed_items = @q.result.paginate(page: params[:page], per_page: 10)
@@ -23,4 +24,9 @@ class StaticPagesController < ApplicationController
 
   def contact
   end
+
+  def micropost_ids
+    micropost_ids = Micropost.where(user_id: current_user.id)
+  end
+
 end

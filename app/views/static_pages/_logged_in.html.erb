@@ -2,10 +2,14 @@
   <div class="col-md-12 pagename">
     <h3 class="pagetitle">マイページ</h3>
   </div>
-  <%= render 'shared/ranking' %>
-  <div class="col-md-6">
+  <aside class="col-md-6">
+    <%= render 'shared/new_comments' %>
+    <%= render 'shared/my_ranks' %>
+    <%= render 'shared/all_ranks' %>
+  </aside>
+  <div class="col-sm-6">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-sm-12">
         <h3 class="pagetitle">フォローしているユーザーの投稿</h3>
       </div>
       <div class="search_form">

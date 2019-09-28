@@ -24,8 +24,8 @@ class FavlistCreateTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_template 'favlists/show'
     assert_match memo, response.body
-    assert_select 'a', text: 'delete'
-    assert_select 'a', text: 'edit'
+    assert_select 'a', text: '削除'
+    assert_select 'a', text: '編集'
     # お気に入りリストを編集する
     get edit_favlist_path(favlists(:RnB))
     title2 = "Soul"
@@ -35,8 +35,8 @@ class FavlistCreateTest < ActionDispatch::IntegrationTest
                          memo: memo2 } }
     follow_redirect!
     assert_template 'favlists/show'
-    assert_select 'a', text: 'edit'
-    assert_select 'a', text: 'delete'
+    assert_select 'a', text: '編集'
+    assert_select 'a', text: '削除'
     # お気に入りリストを削除する
     get favlist_path(favlists(:RnB))
     assert_difference 'Favlist.count', -1 do

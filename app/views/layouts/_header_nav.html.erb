@@ -2,15 +2,16 @@
   <div class= "container" >
     <nav>
       <ul class="nav navbar-nav" >
-        <li><%= link_to "Home",   root_path %></li>
-        <li><%= link_to "Help",   help_path %></li>
+        <li><%= link_to "トップ",   root_path %></li>
         <% if logged_in? %>
-          <li><%= link_to "Microposts", microposts_path %></li>
-          <li><%= link_to "Messages", messages_path %></li>
-          <li><%= link_to "Users", users_path %></li>
-          <li><%= link_to "Post", new_micropost_path %></li>
+        <li><%= link_to "投稿する", new_micropost_path %></li>
+          <li><%= link_to "投稿一覧", microposts_path %></li>
+          <li><%= link_to "メッセージ", messages_path %></li>
+          <li><%= link_to "お気に入りリスト", favlists_path %></li>
+          <li><%= link_to "ユーザー一覧", users_path %></li>
         <% else %>
           <li><%= link_to "Log in", login_path %></li>
+          <li><%= link_to "このサイトについて",   help_path %></li>
         <% end %>
       </ul>
     <nav>

@@ -40,5 +40,21 @@
         <% end %>
       </div>
     </li>
+
+    <li class="list-group-item">
+      <div class="row">
+        <% if micropost.collablist.nil? %>
+        <% else %>
+        <span>
+          コラボリスト：
+          <% micropost.collablist.split(' ').each do |f| %>
+              <%= link_to "#{Micropost.find(f).title}", micropost_path(f) %>,
+          <% end %>
+        </span>
+        <% end %>
+      </div>
+    </li>
+
+
   </ul>
 </div>

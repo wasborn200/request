@@ -1,22 +1,27 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-6">
-      <% @messages.each do |b| %>
-      <div class="card well" style="max-width: 50rem;">
-        <% from_user = User.find(b.from_id) %>
-        <div class="card-header">
-          送信元：
-          <%= link_to "#{from_user.name} @ #{from_user.unique_name}", user_path(from_user) %>
-        </div>
-        <div class="card-body">
-            コメント：<%= b.content %>
-          <div class="text-right">
-            <%= b.created_at %>
-          </div>
-        </div>
-      </div>
-      <% end %>
-    </div>
+<% provide(:title, '新着メッセージ') %>
+<div class="row">
+  <div class="col-md-12 pagename">
+    <h3 class="pagetitle">新着メッセージ</h3>
+  </div>
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <% @messages.each do |b| %>
+    <% from_user = User.find(b.from_id) %>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <%= link_to gravatar_for(from_user, size: 40), from_user %>
+        <%= link_to "#{from_user.name} @ #{from_user.unique_name}", user_path(from_user) %>
+        <br><%= b.created_at %>
+      </li>
+      <li class="list-group-item">
+        コメント：<%= b.content %>
+      </li>
+      <li class="list-group-item">
+        <%= link_to "返信する", message_user_path(from_user) %>
+      </li>
+    </ul>
+
+
+    <% end %>
   </div>
 </div>

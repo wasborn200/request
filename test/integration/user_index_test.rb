@@ -38,19 +38,19 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
     User.paginate(page:1).each do |user|
       assert_select 'a[href=?]', user_path(user), text: user.name
     end
-    assert_select 'title', "All users | #{@base_title}"
+    assert_select 'title', "ユーザー一覧 | #{@base_title}"
     # User search
     get users_path, params: {q: {name_cont: "a" } }
     q = User.ransack(name_cont: "a", activated_true: true)
     q.result.paginate(page: 1).each do |user|
       assert_select 'a[href=?]', user_path(user), text: user.name
     end
-    assert_select 'title', "Search Result | #{@base_title}"
+    assert_select 'title', "検索結果 | #{@base_title}"
     # User search(no result)
     get users_path, params: {q: {name_cont: "abcdefghij"} }
-    assert_match "Couldn't find any user.", response.body
+    assert_match "ユーザーを見つけることができませんでした。", response.body
     # Make sure the title is back to 'All users'
     get users_path, params: {q: {name_cont: ""} }
-    assert_select 'title', "All users | #{@base_title}"
+    assert_select 'title', "ユーザー一覧 | #{@base_title}"
   end
 end

@@ -1,13 +1,22 @@
-<h2>お気に入り一覧</h2>
-<%= link_to "お気に入りを作成する", new_favlist_path %>
-<% @favlists.each do |f| %>
-<div class="card well" style="max-width: 50rem;">
-  <div class="card-header">
-    名前：
-    <%= link_to "#{f.title}", favlist_path(f) %>
+<% provide(:title, 'お気に入りリスト一覧') %>
+<div class="row">
+  <div class="col-md-12 pagename">
+    <h3 class="pagetitle">お気に入り一覧</h3>
   </div>
-  <div class="card-body">
-      コメント：<%= f.memo %>
+  <div class="col-sm-3">
+  </div>
+  <div class="col-sm-6">
+    <span><%= link_to "お気に入りを作成する", new_favlist_path, class: "btn btn-block btn-primary"%></span>
+    <br>
+    <% @favlists.each do |f| %>
+    <h3 class="pagetitle">
+      <%= link_to "#{f.title}", favlist_path(f) %>
+    </h3>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <%= f.memo %>
+      </li>
+    </ul>
+    <% end %>
   </div>
 </div>
-<% end %>

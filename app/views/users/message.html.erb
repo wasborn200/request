@@ -1,5 +1,8 @@
 <% provide(:title, @user.name) %>
 <div class="row">
+  <div class="col-md-12 pagename">
+    <h3 class="pagetitle"><%= "#{@user.name}へメッセージを送る" %></h3>
+  </div>
   <aside class="col-md-4">
     <section class="user_info">
       <h1>
@@ -10,7 +13,8 @@
     <section class="stats">
       <%= render 'shared/stats' %>
     </section>
-    <h1>message</h1>
-    <%= render 'messages/message_interface' %>
   </aside>
+  <div class="col-md-8">
+    <%= render 'messages/message_interface' %>
+  </div>
 </div>

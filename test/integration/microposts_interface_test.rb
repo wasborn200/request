@@ -28,8 +28,8 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_template 'microposts/show'
     assert_match content, response.body
-    assert_select 'a', text: 'delete'
-    assert_select 'a', text: 'edit'
+    assert_select 'a', text: '削除'
+    assert_select 'a', text: '編集'
     micropost = Micropost.find_by(microposts)
     # トップページに戻ると、今さっき投稿したマイクロポストが最初に来ている
     get root_path

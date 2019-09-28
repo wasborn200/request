@@ -1,21 +1,38 @@
-<div class="row col-md-4"><%= @favlist.title %></div>
+<% provide(:title, 'お気に入りリスト') %>
 <div class="row">
-  <span class="content">
-    <%= @favlist.memo %>
-    favpost
-    <%= @favlist.favposts.count %>
-
-    <div class="card well" style="max-width: 50rem;">
-      <% @microposts.each do |f| %>
+  <div class="col-sm-4">
+    <h3 class="pagetitle"><%= "#{@favlist.title}" %></h3>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <%= @favlist.memo %>
+      </li>
+      <% if current_user?(@favlist.user) %>
+      <li class="list-group-item micropost_function">
         <div class="row">
-          <%= link_to "#{Micropost.find(f).title}", micropost_path(f) %>
+          <div class="col-sm-2">
+            <%= link_to "編集", edit_favlist_path(@favlist), class: "btn btn-primary h-20px" %>
+          </div>
+          <div class="col-sm-2">
+            <%= link_to "削除", @favlist, method: :delete,
+            data: { confirm: "お気に入りリストを削除してもよろしいですか?"}, class: "btn btn-danger h-25px" %>
+          </div>
         </div>
+      </li>
       <% end %>
-    </div>
-    <%= render 'favlist_edit_delete' %>
-
-  </span>
+    </ul>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        コラボする投稿一覧
+      </li>
+      <% @microposts.each do |f| %>
+      <li class="list-group-item">
+        <%= link_to "#{Micropost.find(f).title}", micropost_path(f) %>
+      </li>
+      <% end %>
+    </ul>
+    <%= link_to "お気に入り一覧に戻る", favlists_path %>
+  </div>
+  <div class="col-sm-8" >
+    <%= render 'favlists/collabpost_form' %>
+  </div>
 </div>
-<%= link_to "お気に入り一覧に戻る", favlists_path %>
-
-<%= render 'favlists/collabpost_form' %>

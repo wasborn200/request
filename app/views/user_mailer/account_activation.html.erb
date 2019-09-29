@@ -1,7 +1,8 @@
-<h1>Sample App</h1>
-<p>Hi <%= @user.name %>
+<h1>Collab RE:Quest</h1>
+<p><%= @user.name %>さん</p>
 <p>
-  welcome to the Sample App! Click on the link below to activate your account:
+  アカウントの登録をしていただきありがとうございます。
+  <br>下記リンクからアカウントの有効化をお願いします。
 </p>
 
 <%= link_to "Activate", edit_account_activation_url(@user.activation_token,

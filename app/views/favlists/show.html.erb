@@ -1,4 +1,4 @@
-<% provide(:title, 'お気に入りリスト') %>
+<% provide(:title, 'コラボリスト') %>
 <div class="row">
   <div class="col-sm-4">
     <h3 class="pagetitle"><%= "#{@favlist.title}" %></h3>
@@ -14,7 +14,7 @@
           </div>
           <div class="col-sm-2">
             <%= link_to "削除", @favlist, method: :delete,
-            data: { confirm: "お気に入りリストを削除してもよろしいですか?"}, class: "btn btn-danger h-25px" %>
+            data: { confirm: "コラボリストを削除してもよろしいですか?"}, class: "btn btn-danger h-25px" %>
           </div>
         </div>
       </li>
@@ -30,7 +30,7 @@
       </li>
       <% end %>
     </ul>
-    <%= link_to "お気に入り一覧に戻る", favlists_path %>
+    <%= link_to "コラボリスト一覧に戻る", favlists_path %>
   </div>
   <div class="col-sm-8" >
     <%= render 'favlists/collabpost_form' %>

@@ -1,12 +1,12 @@
-<% provide(:title, 'お気に入りリスト一覧') %>
+<% provide(:title, 'コラボリスト一覧') %>
 <div class="row">
   <div class="col-md-12 pagename">
-    <h3 class="pagetitle">お気に入り一覧</h3>
+    <h3 class="pagetitle">コラボリスト一覧</h3>
   </div>
   <div class="col-sm-3">
   </div>
   <div class="col-sm-6">
-    <span><%= link_to "お気に入りを作成する", new_favlist_path, class: "btn btn-block btn-primary"%></span>
+    <span><%= link_to "コラボリストを作成する", new_favlist_path, class: "btn btn-block btn-primary"%></span>
     <br>
     <% @favlists.each do |f| %>
     <h3 class="pagetitle">

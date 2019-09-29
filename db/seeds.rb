@@ -40,7 +40,7 @@ end
 20.times do |n|
   title = Faker::Music.instrument
   content = Faker::Lorem.sentence(5)
-  collablist = "#{n} #{n+3}"
+  collablist = "#{n+1} #{n+3}"
   users.each { |user| user.microposts.create!(title: title, content: content, collablist: collablist) }
 end
 

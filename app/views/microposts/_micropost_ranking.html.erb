@@ -42,6 +42,19 @@
         <% end %>
       </div>
     </li>
+    <% if micropost.collablist.nil? %>
+    <% else %>
+    <li class="list-group-item">
+        <div class="collabitems">
+          <span>
+            コラボ素材：
+            <% micropost.collablist.split(' ').each do |f| %>
+            <%= link_to "#{Micropost.find(f).title}", micropost_path(f), class: "btn btn-primary h-20px" %>
+            <% end %>
+          </span>
+        </div>
+    </li>
+    <% end %>
   </ul>
 </div>
 <% end %>

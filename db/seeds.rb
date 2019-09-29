@@ -36,6 +36,14 @@ users = User.order(:created_at).take(6)
   users.each { |user| user.microposts.create!(title: title, content: content) }
 end
 
+# コラボリスト
+20.times do |n|
+  title = Faker::Music.instrument
+  content = Faker::Lorem.sentence(5)
+  collablist = "#{n} #{n+3}"
+  users.each { |user| user.microposts.create!(title: title, content: content, collablist: collablist) }
+end
+
 # お気に入りリスト
 5.times do |n|
   title = Faker::Music.instrument

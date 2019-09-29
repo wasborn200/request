@@ -44,15 +44,14 @@ class MicropostsController < ApplicationController
 
   def index
     if logged_in?
-      @micropost = Micropost.all
+      @micropost = Micropost.where(collablist: nil)
       @all_ranks = Micropost.create_all_ranks
-      @my_ranks = []
       if params[:q] && params[:q].reject { |key, value| value.blank? }.present?
-        @q = Micropost.ransack(microposts_search_params)
+        @q = @micropost.ransack(microposts_search_params)
         @feed_items = @q.result.paginate(page: params[:page])
       else
-        @q = Micropost.none.ransack
-        @feed_items = Micropost.paginate(page: params[:page])
+        @q = @micropost.none.ransack
+        @feed_items = @micropost.paginate(page: params[:page])
       end
       @url = microposts_path
     end
@@ -61,6 +60,7 @@ class MicropostsController < ApplicationController
   def collabposts
     if logged_in?
       @micropost = Micropost.where.not(collablist: nil)
+      @all_ranks = Micropost.create_all_ranks
       if params[:q] && params[:q].reject { |key, value| value.blank? }.present?
         @q = @micropost.ransack(microposts_search_params)
         @feed_items = @q.result.paginate(page: params[:page])

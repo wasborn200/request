@@ -1,7 +1,5 @@
 <% provide(:ranks, @all_ranks) %>
-<h3 class="pagetitle">全投稿ランキング</h3>
-<% if @all_ranks.any? %>
+<h3 class="pagetitle">ランキング</h3>
   <ol class="microposts">
   <%= render 'microposts/micropost_ranking' %>
   </ol>
-<% end %>

@@ -5,8 +5,8 @@
         <li><%= link_to "トップ",   root_path %></li>
         <% if logged_in? %>
         <li><%= link_to "投稿する", new_micropost_path %></li>
-          <li><%= link_to "投稿一覧", microposts_path %></li>
-          <li><%= link_to "コラボ投稿", collabposts_microposts_path %></li>
+          <li><%= link_to "素材", microposts_path %></li>
+          <li><%= link_to "コラボ", collabposts_microposts_path %></li>
           <li><%= link_to "メッセージ", messages_path %></li>
           <li><%= link_to "お気に入りリスト", favlists_path %></li>
           <li><%= link_to "ユーザー一覧", users_path %></li>

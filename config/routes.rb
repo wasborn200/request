@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   resources :microposts do
     resources :comments,          only: [:create, :destroy]
     resources :likes,             only: [:create, :destroy]
+    collection do
+      get :collabposts
+    end
   end
   resources :relationships,       only: [:create, :destroy]
   resources :messages,            only: [:index]

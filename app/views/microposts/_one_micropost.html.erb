@@ -40,19 +40,19 @@
         <% end %>
       </div>
     </li>
+    <% if @micropost.collablist.nil? %>
+    <% else %>
     <li class="list-group-item">
-      <div class="row">
-        <% if @micropost.collablist.nil? %>
-        <% else %>
-        <span>
-          コラボリスト：
-          <% @micropost.collablist.split(' ').each do |f| %>
-              <%= link_to "#{Micropost.find(f).title}", micropost_path(f) %>,
-          <% end %>
-        </span>
-        <% end %>
-      </div>
+        <div class="collabitems">
+          <span>
+            コラボ素材：
+            <% @micropost.collablist.split(' ').each do |f| %>
+            <%= link_to "#{Micropost.find(f).title}", micropost_path(f), class: "btn btn-primary h-20px" %>
+            <% end %>
+          </span>
+        </div>
     </li>
+    <% end %>
   </ul>
   <%= render 'shared/likes' %>
 </div>

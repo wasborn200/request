@@ -58,6 +58,19 @@ class MicropostsController < ApplicationController
     end
   end
 
+  def collabposts
+    if logged_in?
+      @micropost = Micropost.where.not(collablist: nil)
+      if params[:q] && params[:q].reject { |key, value| value.blank? }.present?
+        @q = @micropost.ransack(microposts_search_params)
+        @feed_items = @q.result.paginate(page: params[:page])
+      else
+        @q = @micropost.none.ransack
+        @feed_items = @micropost.paginate(page: params[:page])
+      end
+      @url = collabposts_microposts_path
+    end
+  end
 
   private
 

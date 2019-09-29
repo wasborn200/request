@@ -6,11 +6,12 @@
         <% if logged_in? %>
         <li><%= link_to "投稿する", new_micropost_path %></li>
           <li><%= link_to "投稿一覧", microposts_path %></li>
+          <li><%= link_to "コラボ投稿", collabposts_microposts_path %></li>
           <li><%= link_to "メッセージ", messages_path %></li>
           <li><%= link_to "お気に入りリスト", favlists_path %></li>
           <li><%= link_to "ユーザー一覧", users_path %></li>
         <% else %>
-          <li><%= link_to "Log in", login_path %></li>
+          <li><%= link_to "ログイン", login_path %></li>
           <li><%= link_to "このサイトについて",   help_path %></li>
         <% end %>
       </ul>

@@ -5,7 +5,7 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
   def setup
     @admin     = users(:michael)
     @non_admin = users(:archer)
-    @base_title = "Ruby on Rails Tutorial Sample App"
+    @base_title = "Collab RE:Quest"
   end
 
   test "index as admin including pagination and delete links" do

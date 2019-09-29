@@ -1,17 +1,16 @@
-User.create!(name:  "Example User",
-             email: "example@railstutorial.org",
-             password:              "foobar",
-             password_confirmation: "foobar",
-             admin: true,
+User.create!(name:  "サンプルユーザー",
+             email: "sample-1@collabrequest.com",
+             password:              "password",
+             password_confirmation: "password",
              activated: true,
              activated_at: Time.zone.now,
-             unique_name: "example_user")
+             unique_name: "sample_1")
 
 99.times do |n|
   name  = Faker::Name.name
-  email = "example-#{n+1}@railstutorial.org"
+  email = "sample-#{n+2}@collabrequest.com"
   password = "password"
-  unique_name = "example_#{n+1}"
+  unique_name = "example_#{n+2}"
   User.create!(name:  name,
                email: email,
                password:              password,
@@ -21,7 +20,16 @@ User.create!(name:  "Example User",
                unique_name: unique_name )
 end
 
-# マイクロポスト
+User.create!(name:  "管理者",
+             email: "admin@collabrequest.com",
+             password:              "password",
+             password_confirmation: "password",
+             admin: true,
+             activated: true,
+             activated_at: Time.zone.now,
+             unique_name: "admin_1")
+
+# 素材投稿
 user = User.first
 10.times do
   title = Faker::Music.instrument
@@ -36,7 +44,7 @@ users = User.order(:created_at).take(6)
   users.each { |user| user.microposts.create!(title: title, content: content) }
 end
 
-# コラボリスト
+# コラボ投稿
 20.times do |n|
   title = Faker::Music.instrument
   content = Faker::Lorem.sentence(5)
@@ -44,7 +52,7 @@ end
   users.each { |user| user.microposts.create!(title: title, content: content, collablist: collablist) }
 end
 
-# お気に入りリスト
+# コラボリスト
 5.times do |n|
   title = Faker::Music.instrument
   memo  = Faker::Lorem.sentence(5)

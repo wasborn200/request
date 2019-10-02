@@ -37,11 +37,26 @@
         </div>
         <div class="col-sm-2">
           <%= link_to "削除", micropost, method: :delete,
-          data: { confirm: "投稿を削除してもよろしいですか?"}, class: "btn btn-danger h-25px" %>
+          data: { confirm: "投稿を削除してもよろしいですか?"}, class: "btn btn-danger btn-success" %>
         </div>
         <% end %>
       </div>
     </li>
+    <% if micropost.collablist.nil? %>
+    <% else %>
+    <li class="list-group-item">
+        <div class="collabitems">
+          <span>
+            コラボ素材：
+            <% micropost.collablist.split(' ').each do |f| %>
+            <div class="collabitems">
+            <%= link_to "#{Micropost.find(f).title}", micropost_path(f), class: "btn btn-success" %>
+            </div>
+            <% end %>
+          </span>
+        </div>
+    </li>
+    <% end %>
   </ul>
 </div>
 <% end %>

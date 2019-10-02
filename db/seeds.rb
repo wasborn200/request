@@ -41,20 +41,97 @@ User.create!(name:  "祖堅",
             activated_at: Time.zone.now,
             unique_name: "soken")
 
-            # 「音声」
-            # 吉田　最愛、家族になろうよ
-            # 髙井　lemon, 大丈夫
-            #
-            # 「音源」
-            # 祖堅　lemon, 大丈夫
-            # 前廣　最愛, 家族になろうよ
+# 投稿チェック用素材
 
-# user = User.second
-# 10.times do
-#   title = Faker::Music.instrument
-#   content = Faker::Lorem.sentence(5)
-#   user.microposts.create!(title: title, content: content)
-# end
+user = User.second
+title1 = "「最愛」を歌ってみました。"
+title2 = "「家族になろうよ」を歌ってみました。"
+content1 = "福山雅治の「最愛」を歌ってみました。※サイト管理人が音声サンプルとして録音したデータです。
+            聞き苦しいかと思いますので音量にご注意ください。"
+content2 = "福山雅治の「家族になろうよ」を歌ってみました。※サイト管理人が音声サンプルとして録音したデータです。
+            聞き苦しいかと思いますので音量にご注意ください。"
+picture1 = open("#{Rails.root}/db/fixtures/saiai_voice.mp3")
+picture2 = open("#{Rails.root}/db/fixtures/kazoku_voice.mp3")
+user.microposts.create!(title: title1, content: content1, picture: picture1)
+user.microposts.create!(title: title2, content: content2, picture: picture2)
+
+user = User.third
+title3 = "「lemon」を歌ってみました。"
+title4 = "「大丈夫」を歌ってみました。"
+content3 = "米津玄師の「lemon」を歌ってみました。※サイト管理人が音声サンプルとして録音したデータです。
+            聞き苦しいかと思いますので音量にご注意ください。"
+content4 = "Radwimpsの「大丈夫」を歌ってみました。※サイト管理人が音声サンプルとして録音したデータです。
+            聞き苦しいかと思いますので音量にご注意ください。"
+picture3 = open("#{Rails.root}/db/fixtures/lemon_voice.mp3")
+picture4 = open("#{Rails.root}/db/fixtures/daijyoubu_voice.mp3")
+user.microposts.create!(title: title3, content: content3, picture: picture3)
+user.microposts.create!(title: title4, content: content4, picture: picture4)
+
+user = User.fourth
+title5 = "「最愛」を演奏してみました。"
+title6 = "「家族になろうよ」を演奏してみました。"
+content5 = "福山雅治の「最愛」を演奏しました。※こちらはカラオケ音源データになります。"
+content6 = "福山雅治の「家族になろうよ」を演奏しました。※こちらはカラオケ音源データになります。"
+picture5 = open("#{Rails.root}/db/fixtures/saiai_instrumental.mp3")
+picture6 = open("#{Rails.root}/db/fixtures/kazoku_instrumental.mp3")
+user.microposts.create!(title: title5, content: content5, picture: picture5)
+user.microposts.create!(title: title6, content: content6, picture: picture6)
+
+user = User.fifth
+title7 = "「lemon」を演奏してみました。"
+title8 = "「大丈夫」を演奏してみました。"
+content7 = "米津玄師の「lemon」を演奏しました。※こちらはカラオケ音源データになります。"
+content8 = "Radwimpsの「大丈夫」を演奏しました。※こちらはカラオケ音源データになります。"
+picture7 = open("#{Rails.root}/db/fixtures/lemon_instrumental.mp3")
+picture8 = open("#{Rails.root}/db/fixtures/daijyoubu_instrumental.mp3")
+user.microposts.create!(title: title7, content: content7, picture: picture7)
+user.microposts.create!(title: title8, content: content8, picture: picture8)
+
+# 投稿チェック用コラボ
+
+# 9
+user = User.third
+title = "「大丈夫」をコラボしてみました。"
+content = "Radwimpsの「大丈夫」を祖堅さんの音源とコラボさせてもらいました。※サイト管理人がサンプルとして録音したデータを含んでおります。
+            聞き苦しいかと思いますので音量にご注意ください。"
+picture = open("#{Rails.root}/db/fixtures/daijyoubu_music.mp3")
+collablist = "4 8"
+user.microposts.create!(title: title, content: content, picture: picture, collablist: collablist)
+
+# 10
+user = User.second
+title = "「最愛」をコラボしてみました。"
+content = "福山雅治の「最愛」を前廣さんの音源とコラボさせてもらいました。※サイト管理人が音声サンプルとして録音したデータを含んでおります。
+            聞き苦しいかと思いますので音量にご注意ください。"
+picture = open("#{Rails.root}/db/fixtures/saiai_music.mp3")
+collablist = "1 5"
+user.microposts.create!(title: title, content: content, picture: picture, collablist: collablist)
+
+# 11
+user = User.fourth
+title = "「lemon」をコラボしてみました。"
+content = "米津玄師の「lemon」を高井さんの音声とコラボさせてもらいました。※サイト管理人がサンプルとして録音したデータを含んでおります。
+            聞き苦しいかと思いますので音量にご注意ください。"
+picture = open("#{Rails.root}/db/fixtures/lemon_music.mp3")
+collablist = "3 7"
+user.microposts.create!(title: title, content: content, picture: picture, collablist: collablist)
+
+# 12
+user = User.second
+title = "「家族になろうよ」をコラボしてみました。"
+content = "福山雅治の「家族になろうよ」を吉田さんの音声とコラボさせてもらいました。※サイト管理人が音声サンプルとして録音したデータを含んでおります。
+            聞き苦しいかと思いますので音量にご注意ください。"
+picture = open("#{Rails.root}/db/fixtures/kazoku_music.mp3")
+collablist = "2 6"
+user.microposts.create!(title: title, content: content, picture: picture, collablist: collablist)
+
+# 「音声」
+# 吉田　最愛、家族になろうよ
+# 髙井　lemon, 大丈夫
+#
+# 「音源」
+# 祖堅　lemon, 大丈夫
+# 前廣　最愛, 家族になろうよ
 
 # その他ユーザー
 99.times do |n|
@@ -132,9 +209,9 @@ microposts = Micropost.all
 user1 = users[1..43]
 user2 = users[1..29]
 user3 = users[1..17]
-micropost1 = microposts[57]
-micropost2 = microposts[140]
-micropost3 = microposts[245]
-user1.each { |user| user.likes.create!(micropost_id: micropost1.id) }
-user2.each { |user| user.likes.create!(micropost_id: micropost2.id) }
-user3.each { |user| user.likes.create!(micropost_id: micropost3.id) }
+micropost1 = microposts[11]
+micropost2 = microposts[9]
+micropost3 = microposts[10]
+user1.each { |user| user.likes.create!(micropost_id: 11) }
+user2.each { |user| user.likes.create!(micropost_id: 10) }
+user3.each { |user| user.likes.create!(micropost_id: 9) }

@@ -1,4 +1,5 @@
-User.create!(name:  "サンプルユーザー",
+# 簡単ログインユーザー
+User.create!(name:  "簡単ログインユーザー",
              email: "sample-1@collabrequest.com",
              password:              "password",
              password_confirmation: "password",
@@ -6,11 +7,61 @@ User.create!(name:  "サンプルユーザー",
              activated_at: Time.zone.now,
              unique_name: "sample_1")
 
+# 投稿機能チェック用ユーザー
+
+User.create!(name:  "吉田",
+            email: "sample-2@collabrequest.com",
+            password:              "password",
+            password_confirmation: "password",
+            activated: true,
+            activated_at: Time.zone.now,
+            unique_name: "yoshida")
+
+User.create!(name:  "高井",
+            email: "sample-3@collabrequest.com",
+            password:              "password",
+            password_confirmation: "password",
+            activated: true,
+            activated_at: Time.zone.now,
+            unique_name: "hiroshi")
+
+User.create!(name:  "前廣",
+            email: "sample-4@collabrequest.com",
+            password:              "password",
+            password_confirmation: "password",
+            activated: true,
+            activated_at: Time.zone.now,
+            unique_name: "maehiro")
+
+User.create!(name:  "祖堅",
+            email: "sample-5@collabrequest.com",
+            password:              "password",
+            password_confirmation: "password",
+            activated: true,
+            activated_at: Time.zone.now,
+            unique_name: "soken")
+
+            # 「音声」
+            # 吉田　最愛、家族になろうよ
+            # 髙井　lemon, 大丈夫
+            #
+            # 「音源」
+            # 祖堅　lemon, 大丈夫
+            # 前廣　最愛, 家族になろうよ
+
+# user = User.second
+# 10.times do
+#   title = Faker::Music.instrument
+#   content = Faker::Lorem.sentence(5)
+#   user.microposts.create!(title: title, content: content)
+# end
+
+# その他ユーザー
 99.times do |n|
   name  = Faker::Name.name
-  email = "sample-#{n+2}@collabrequest.com"
+  email = "sample-#{n+6}@collabrequest.com"
   password = "password"
-  unique_name = "example_#{n+2}"
+  unique_name = "example_#{n+6}"
   User.create!(name:  name,
                email: email,
                password:              password,
@@ -19,6 +70,8 @@ User.create!(name:  "サンプルユーザー",
                activated_at: Time.zone.now,
                unique_name: unique_name )
 end
+
+# 管理者
 
 User.create!(name:  "管理者",
              email: "admin@collabrequest.com",

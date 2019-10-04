@@ -2,61 +2,10 @@
 <h3 class="cattitle">第<%= i %>位</h3>
 <div id="micropost-<%= micropost.id %>">
   <ul class="list-group list-group-flush">
-    <li class="list-group-item bg-primary">
-      <%= link_to gravatar_for(micropost.user, size: 40), micropost.user %>
-      <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
-      <span class="user"><%= link_to "@ #{micropost.user.unique_name}", micropost.user.unique_name %></span>
-      <span class="timestamp">
-        Posted <%= time_ago_in_words(micropost.created_at) %> ago.
-      </span>
-    </li>
-    <li class="list-group-item">
-      <span class="title"><%= link_to micropost.title, micropost %></span>
-      <span class="content">
-        <%= micropost.content %>
-        <% if micropost.picture? %>
-        <% if micropost.picture.file.content_type.include?('image/') %>
-        <%= image_tag micropost.picture.url(:thumb) %>
-        <% elsif micropost.picture.file.content_type.include?('audio/') %>
-        <%= audio_tag micropost.picture.url, controls: true if micropost.picture? %>
-        <% else %>
-        <%= video_tag micropost.picture.url, width: "30%", height: "30%",
-        controls: true, autobuffer: true %>
-        <% end %>
-        <% end %>
-      </span>
-    </li>
-    <li class="list-group-item micropost_function">
-      <div class="row">
-        <span class="col-sm-4 likecount">
-          いいねの数：<%= micropost.liked_users.count %>
-        </span>
-        <% if current_user?(micropost.user) %>
-        <div class="col-sm-2">
-          <%= link_to "編集", edit_micropost_path(micropost), class: "btn btn-primary h-20px" %>
-        </div>
-        <div class="col-sm-2">
-          <%= link_to "削除", micropost, method: :delete,
-          data: { confirm: "投稿を削除してもよろしいですか?"}, class: "btn btn-danger btn-success" %>
-        </div>
-        <% end %>
-      </div>
-    </li>
-    <% if micropost.collablist.nil? %>
-    <% else %>
-    <li class="list-group-item">
-        <div class="collabitems">
-          <span>
-            コラボ素材：
-            <% micropost.collablist.split(' ').each do |f| %>
-            <div class="collabitems">
-            <%= link_to "#{Micropost.find(f).title}", micropost_path(f), class: "btn btn-success" %>
-            </div>
-            <% end %>
-          </span>
-        </div>
-    </li>
-    <% end %>
+    <% @micropost = micropost %>
+    <%= render 'microposts/posts' %>
+    <%= render 'microposts/like_edit_delete' %>
+    <%= render 'microposts/collab_items' %>
   </ul>
 </div>
 <% end %>

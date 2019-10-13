@@ -5,7 +5,7 @@ class FavoritesController < ApplicationController
     @micropost = Micropost.find(params[:micropost_id])
     @favlist = Favlist.find(params[:favlist_id])
     @favlist.like(@micropost)
-    flash[:success] = 'お気に入り登録をしました。'
+    flash[:success] = '素材をコラボリストに入れました。'
     redirect_back(fallback_location: root_path)
   end
 
@@ -13,7 +13,7 @@ class FavoritesController < ApplicationController
     @micropost = Micropost.find(params[:micropost_id])
     @favlist = Favlist.find(params[:favlist_id])
     @favlist.unlike(@micropost)
-    flash[:success] = 'お気に入り登録を解除しました。'
+    flash[:success] = '素材をコラボリストから取り出しました。'
     redirect_back(fallback_location: root_path)
   end
 

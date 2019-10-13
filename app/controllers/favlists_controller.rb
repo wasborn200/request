@@ -11,7 +11,7 @@ class FavlistsController < ApplicationController
   def create
     @favlist = current_user.favlists.build(favlist_params)
     if @favlist.save
-      flash[:success] = "favlist created!"
+      flash[:success] = "コラボリストを作成しました！"
       redirect_to favlist_path(@favlist)
     else
       render 'favlists/new'
@@ -20,7 +20,7 @@ class FavlistsController < ApplicationController
 
   def destroy
     @favlist.destroy
-    flash[:success] = "favlist deleted"
+    flash[:success] = "コラボリストを削除しました。"
     redirect_to root_url
   end
 
@@ -42,7 +42,7 @@ class FavlistsController < ApplicationController
 
   def update
     if @favlist.update_attributes(favlist_params)
-      flash[:success] = "Favlist updated"
+      flash[:success] = "コラボリストを更新しました。"
       redirect_to favlist_path(@favlist)
     else
       render 'edit'

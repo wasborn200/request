@@ -4,7 +4,8 @@
       <ul class="nav navbar-nav" >
         <li><%= link_to "トップ",   root_path %></li>
         <% if logged_in? %>
-        <li><%= link_to "投稿する", new_micropost_path %></li>
+          <li><%= link_to "投稿する", new_micropost_path %></li>
+          <li><%= link_to "自分の投稿一覧", current_user %></li>
           <li><%= link_to "素材", microposts_path %></li>
           <li><%= link_to "コラボ", collabposts_microposts_path %></li>
           <li><%= link_to "コラボリスト", favlists_path %></li>

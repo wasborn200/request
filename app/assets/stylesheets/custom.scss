@@ -497,3 +497,22 @@ div.message_form {
   color: #B20000;
   text-align: middle;
 }
+
+
+/* introduction */
+.introduction {
+  display: block;
+  img {
+    margin-left: 10px;
+    display: block;
+    padding: 5px;
+    width: 350px;
+    height: 300px;
+  }
+  span {
+    vertical-align: center;
+    padding: 5px;
+    display: block;
+    font-size: 18px;
+  }
+}
